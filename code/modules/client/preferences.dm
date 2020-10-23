@@ -101,7 +101,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	"mam_tail_animated" = "None",
 	"xenodorsal" = "Standard",
 	"xenohead" = "Standard",
-	"xenotail" = "Xenomorph Tail")
+	"xenotail" = "Xenomorph Tail",
+	"taur" = "None")
 
 	/// Security record note section
 	var/security_records
@@ -586,6 +587,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			if("taur" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Tauric Body</h3>"
+
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=taur;task=input'>[features["taur"]]</a>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
 
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
@@ -1735,6 +1748,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 					if(new_tail)
 						features["mam_tail"] = new_tail
+
+				if("taur")
+					var/list/snowflake_taur_list = list()
+					for(var/path in GLOB.taur_list)
+						var/datum/sprite_accessory/taur/instance = GLOB.taur_list[path]
+						if(istype(instance, /datum/sprite_accessory))
+							var/datum/sprite_accessory/S = instance
+							if(!show_mismatched_markings && S.recommended_species && !S.recommended_species.Find(pref_species.id))
+								continue
+							if((!S.ckeys_allowed) || (S.ckeys_allowed.Find(user.client.ckey)))
+								snowflake_taur_list[S.name] = path
+					var/new_taur
+					new_taur = input(user, "Choose your character's tauric body:", "Character Preference") as null|anything in snowflake_taur_list
+					if(new_taur)
+						features["taur"] = new_taur
+						if(new_taur != "None")
+							features["mam_tail"] = "None"
+							features["xenotail"] = "None"
+							features["tail_human"] = "None"
+							features["tail_lizard"] = "None"
 
 /*
 				if("mam_tail")
