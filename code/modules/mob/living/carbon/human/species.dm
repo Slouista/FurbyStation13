@@ -594,12 +594,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
-	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER, BODY_TAUR_LAYER)
 	var/list/standing	= list()
 
 	H.remove_overlay(BODY_BEHIND_LAYER)
 	H.remove_overlay(BODY_ADJ_LAYER)
 	H.remove_overlay(BODY_FRONT_LAYER)
+	//CITADEL EDIT - Do not forget to add this to relevent_layers list just above too!
+	H.remove_overlay(BODY_TAUR_LAYER)
+	//END EDIT
 
 	if(!mutant_bodyparts)
 		return
@@ -760,8 +763,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.mam_ears_list[H.dna.features["mam_ears"]]
 				if("mam_snouts")
 					S = GLOB.mam_snouts_list[H.dna.features["mam_snouts"]]
-//				if("taur")
-//					S = GLOB.taur_list[H.dna.features["taur"]]
+				if("taur")
+					S = GLOB.taur_list[H.dna.features["taur"]]
 				if("xenodorsal")
 					S = GLOB.xeno_dorsal_list[H.dna.features["xenodorsal"]]
 				if("xenohead")
@@ -957,7 +960,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.apply_overlay(BODY_BEHIND_LAYER)
 	H.apply_overlay(BODY_ADJ_LAYER)
 	H.apply_overlay(BODY_FRONT_LAYER)
-	//H.apply_overlay(BODY_TAUR_LAYER) // CITADEL EDIT
+	H.apply_overlay(BODY_TAUR_LAYER) // CITADEL EDIT
 
 //This exists so sprite accessories can still be per-layer without having to include that layer's
 //number in their sprite name, which causes issues when those numbers change.
@@ -969,7 +972,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return "ADJ"
 		if(BODY_FRONT_LAYER)
 			return "FRONT"
-
+	//CITADEL EDIT
+		if(BODY_TAUR_LAYER)
+			return "TAUR"
+	//END EDIT
 
 /datum/species/proc/spec_life(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
