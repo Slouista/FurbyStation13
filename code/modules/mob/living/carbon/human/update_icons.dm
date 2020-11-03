@@ -591,8 +591,21 @@ generate/load female uniform sprites matching all previously decided variables
 
 	. += "-[gender]"
 
+
+	var/is_taur = FALSE
+	var/mob/living/carbon/human/H = src
+	if(("taur" in H.dna.species.mutant_bodyparts) && (H.dna.features["taur"] != "None"))
+		is_taur = TRUE
+
+
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
+
+		if(istype(BP, /obj/item/bodypart/r_leg) || istype(BP, /obj/item/bodypart/l_leg))
+			if(is_taur)
+				continue
+
+
 		. += "-[BP.body_zone]"
 		if(BP.status == BODYPART_ORGANIC)
 			. += "-organic"
@@ -600,8 +613,14 @@ generate/load female uniform sprites matching all previously decided variables
 			. += "-robotic"
 		if(BP.use_digitigrade)
 			. += "-digitigrade[BP.use_digitigrade]"
+			if(BP.digitigrade_type)
+				. += "-[BP.digitigrade_type]"
 		if(BP.dmg_overlay_type)
 			. += "-[BP.dmg_overlay_type]"
+		if(BP.body_markings)
+			. += "-[BP.body_markings]"
+		else
+			. += "-no_marking"
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
 		. += "-husk"

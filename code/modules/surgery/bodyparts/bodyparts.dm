@@ -376,11 +376,19 @@
 				body_markings = "plain"
 				auxmarking = "plain"
 			markings_color = list(colorlist)
-
 		else
 			body_markings = null
 			auxmarking = null
 
+/*		if(S.override_bp_icon)
+			base_bp_icon = S.override_bp_icon
+		else
+			if(species_id in GLOB.greyscale_limb_types) //should they have greyscales?
+				base_bp_icon = DEFAULT_BODYPART_ICON_ORGANIC
+
+		if(base_bp_icon != DEFAULT_BODYPART_ICON)
+			color_src = mut_colors ? MUTCOLORS : ((H.dna.skin_tone_override && S.use_skintones == USE_SKINTONES_GRAYSCALE_CUSTOM) ? CUSTOM_SKINTONE : SKINTONE)
+*/
 		if(!dropping_limb && H.dna.check_mutation(HULK))
 			mutation_color = "00aa00"
 		else

@@ -8,7 +8,8 @@
 	name = "Anthro"
 	id = "mammal"
 	default_color = "4B4B4B"
-	icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
+	//icon_limbs = DEFAULT_BODYPART_ICON_CITADEL
+	limbs_id = "human"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAIR,WINGCOLOR)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutant_bodyparts = list("mam_tail", "mam_ears", "mam_body_markings", "mam_snouts", "taur", "legs", "deco_wings")

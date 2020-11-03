@@ -195,3 +195,57 @@ GLOBAL_LIST_INIT(numbers_as_words, world.file2list("strings/numbers_as_words.txt
 GLOBAL_LIST_INIT(station_numerals, greek_letters + phonetic_alphabet + numbers_as_words + generate_number_strings())
 
 GLOBAL_LIST_INIT(admiral_messages, list("Do you know how expensive these stations are?","Stop wasting my time.","I was sleeping, thanks a lot.","Stand and fight you cowards!","You knew the risks coming in.","Stop being paranoid.","Whatever's broken just build a new one.","No.", "<i>null</i>","<i>Error: No comment given.</i>", "It's a good day to die!"))
+
+// Cit
+/*
+//a way to index the right bodypart list given the type of bodypart
+GLOBAL_LIST_INIT(mutant_reference_list, list(
+	"tail_lizard" = GLOB.tails_list_lizard,
+	"waggingtail_lizard" = GLOB.animated_tails_list_lizard,
+	"tail_human" = GLOB.tails_list_human,
+	"waggingtail_human" = GLOB.animated_tails_list_human,
+	"spines" = GLOB.spines_list,
+	"waggingspines" = GLOB.animated_spines_list,
+	"snout" = GLOB.snouts_list,
+	"frills" = GLOB.frills_list,
+	"horns" = GLOB.horns_list,
+	"ears" = GLOB.ears_list,
+	"body_markings" = GLOB.body_markings_list,
+	"wings" = GLOB.wings_list,
+	"wingsopen" = GLOB.wings_open_list,
+	"deco_wings" = GLOB.deco_wings_list,
+	"legs" = GLOB.legs_list,
+	"insect_wings" = GLOB.insect_wings_list,
+	"insect_fluff" = GLOB.insect_fluffs_list,
+	"insect_markings" = GLOB.insect_markings_list,
+	"arachnid_legs" = GLOB.arachnid_legs_list,
+	"arachnid_spinneret" = GLOB.arachnid_spinneret_list,
+	"arachnid_mandibles" = GLOB.arachnid_mandibles_list,
+	"caps" = GLOB.caps_list,
+	"ipc_screen" = GLOB.ipc_screens_list,
+	"ipc_antenna" = GLOB.ipc_antennas_list,
+	"mam_tail" = GLOB.mam_tails_list,
+	"mam_waggingtail" = GLOB.mam_tails_animated_list,
+	"mam_body_markings" = GLOB.mam_body_markings_list,
+	"mam_ears" = GLOB.mam_ears_list,
+	"mam_snouts" = GLOB.mam_snouts_list,
+	"taur" = GLOB.taur_list,
+	"xenodorsal" = GLOB.xeno_dorsal_list,
+	"xenohead" = GLOB.xeno_head_list,
+	"xenotail" = GLOB.xeno_tail_list))
+*/
+//SPECIES BODYPART LISTS
+//locked parts are those that your picked species requires to have
+//unlocked parts are those that anyone can choose on customisation regardless
+//parts not in unlocked, but in all, are thus locked
+GLOBAL_LIST_INIT(all_mutant_parts, list("tail_lizard" = "Tail", "mam_tail" = "Tail", "tail_human" = "Tail", "snout" = "Snout", "frills" = "Frills", "spines" = "Spines", "body_markings" = "Body Markings", "mam_body_markings" = "Species Markings" , "mam_ears" = "Ears", "ears" = "Ears", "mam_snouts" = "Snout", "legs" = "Legs", "deco_wings" = "Decorative Wings", "insect_wings" = "Insect Wings", "insect_fluff" = "Insect Fluff", "taur" = "Tauric Body", "insect_markings" = "Insect Markings", "wings" = "Wings", "arachnid_legs" = "Arachnid Legs", "arachnid_spinneret" = "Spinneret", "arachnid_mandibles" = "Mandibles", "xenohead" = "Caste Head", "xenotail" = "Tail", "xenodorsal" = "Dorsal Spines", "ipc_screen" = "Screen", "ipc_antenna" = "Antenna", "meat_type" = "Meat Type", "horns" = "Horns"))
+GLOBAL_LIST_INIT(unlocked_mutant_parts, list("horns", "insect_fluff"))
+
+//parts in either of the above two lists that require a second option that allows them to be coloured
+GLOBAL_LIST_INIT(colored_mutant_parts, list("insect_wings" = "wings_color", "deco_wings" = "wings_color", "horns" = "horns_color"))
+
+//body ids that have greyscale sprites
+GLOBAL_LIST_INIT(greyscale_limb_types, list("human","moth","lizard","pod","plant","jelly","slime","golem","slimelumi","stargazer","mush","ethereal","snail","c_golem","b_golem","mammal","xeno","ipc","insect","synthliz","avian","aquatic"))
+
+//body ids that have prosthetic sprites
+GLOBAL_LIST_INIT(prosthetic_limb_types, list("xion","bishop","cybersolutions","grayson","hephaestus","nanotrasen","talon"))

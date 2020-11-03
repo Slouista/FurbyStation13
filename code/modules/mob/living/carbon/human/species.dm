@@ -93,6 +93,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/icon_limbs //Overrides the icon used for the limbs of this species. Mainly for downstream, and also because hardcoded icons disgust me. Implemented and maintained as a favor in return for a downstream's implementation of synths.
 
+	//override for the icon path used when setting bodypart overlays. Intended for species that don't fit in the standard 32x32 files.
+	var/override_bp_icon
 
 	//Bitflag that controls what in game ways can select this species as a spawnable source
 	//Think magic mirror and pride mirror, slime extract, ERT etc, see defines
